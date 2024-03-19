@@ -14,6 +14,7 @@
 #include "MainUI.h"
 #include "NetPlayerAnimInstance.h"
 #include "NetPlayerController.h"
+#include "NetPlayerState2.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/WidgetComponent.h"
 #include "Kismet/GameplayStatics.h"
@@ -313,6 +314,9 @@ void ANetTPSCDCharacter::ServerFire_Implementation()
 		if (otherPlayer)
 		{
 			otherPlayer->TakeDamage( 1 );
+			//나의 점수를 1점 증가시키고 싶다.
+			auto ps = Cast<ANetPlayerController>( Controller )->GetPlayerState<ANetPlayerState2>();
+			ps->SetScore( ps->GetScore() + 1 );
 		}
 	}
 

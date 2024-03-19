@@ -16,5 +16,8 @@ class NETTPSCD_API ALobbyGameMode : public AGameModeBase
 
 public:
 	virtual void BeginPlay() override;
+
+//public:
+//	void ALobbyGameMode();
 	
 };

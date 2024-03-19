@@ -53,7 +53,11 @@ public:
 
 	// 세션(session) == 방(room)
 	// 세션생성요청함수
-	FString hostName = TEXT("Jacob");
+//	FString myNickName = TEXT("Jacob");
+	FString myNickName;
+	//현재 입장한 방의 이름을 기억하고 싶다.
+	FString myRoomName;
+
 	void CreateRoom(int32 maxPlayerCount, FString roomName);
 	// 세션생성응답함수
 	void OnMyCreateRoomComplete( FName sessionName , bool bWasSuccessful );

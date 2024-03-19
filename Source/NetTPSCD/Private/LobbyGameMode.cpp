@@ -9,4 +9,9 @@ void ALobbyGameMode::BeginPlay()
 
 	GetWorld()->GetFirstPlayerController()->SetShowMouseCursor( true );
 }
+//
+//ALobbyGameMode::ALobbyGameMode1()
+//{
+////	bUseSeamlessTravel = true;
+//}
 

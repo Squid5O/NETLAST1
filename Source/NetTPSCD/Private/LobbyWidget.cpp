@@ -95,12 +95,33 @@ void ULobbyWidget::OnMyGoMenu()
 
 void ULobbyWidget::OnMyGoCreateRoom()
 {
+	if(gi)
+	{
+		if(false ==edit_nickName->GetText().IsEmpty())
+		{
+			gi->myNickName = edit_nickName->GetText().ToString();
+		}
+	}else
+	{
+		edit_nickName->SetText( FText::FromString( gi->myNickName ) );
+	}
 	SwitchPanel( SWITCHER_INDEX_CREATEROOM );
 }
 
 void ULobbyWidget::OnMyGoFindRoom()
 {
-	SwitchPanel( SWITCHER_INDEX_FINDROOM );
+	if (gi)
+	{
+		if (false == edit_nickName->GetText().IsEmpty())
+		{
+			gi->myNickName = edit_nickName->GetText().ToString();
+		}
+	}
+	else
+	{
+		edit_nickName->SetText( FText::FromString( gi->myNickName ) );
+	}
+	SwitchPanel( SWITCHER_INDEX_CREATEROOM );
 	// 메뉴에서 방찾기로 진입시에 조회를 하고싶다.
 	OnMyDoFindRoomList();
 }

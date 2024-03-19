@@ -7,7 +7,10 @@
 #include "Components/Button.h"
 #include "Components/CanvasPanel.h"
 #include "Components/Image.h"
+#include "Components/TextBlock.h"
 #include "Components/UniformGridPanel.h"
+#include "GameFramework/GameStateBase.h"
+#include "GameFramework/PlayerState.h"
 
 void UMainUI::NativeConstruct()
 {
@@ -92,4 +95,23 @@ void UMainUI::OnMyClickRetry()
 void UMainUI::OnMyClickQuit()
 {
 	UE_LOG( LogTemp , Warning , TEXT( "OnMyClickQuit" ) );
+}
+
+void UMainUI::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
+{
+	Super::NativeTick(MyGeometry , InDeltaTime);
+	//전체 유저들의 이름을 알고싶다.
+	auto players = GetWorld()->GetGameState()->PlayerArray;
+	FString txt;
+	//그 유저들의 이름을 모두 모아
+
+/*	txt = (players[0]->GetName()) + "," + (players[1]->GetName()) + "," + (players[2]->GetName()) + "," + (players[3]->GetName()) + "," + (players[4]->GetName()) + "," + (players[5]->GetName()) + "," + (players[6]->GetName()) + "," + (players[7]->GetName()) + "," + (players[8]->GetName()) + "," + (players[9]->GetName());*/
+
+	for(APlayerState* ps : players)
+	{
+		const int32 _score = static_cast<int32>(ps->GetScore());
+		txt.Append( FString::Printf( TEXT("%s : %d점\n") , *ps->GetPlayerName(), _score ));
+	}
+	//화면에 출력하고 싶다.
+	txt_plyaers->SetText( FText::FromString( players[0].GetName() ) );
 }
