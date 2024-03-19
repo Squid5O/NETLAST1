@@ -66,6 +66,9 @@ public:
 	UFUNCTION()
 	void OnMyClickQuit();
 
+	UFUNCTION()
+	void OnMyDestroyRoom(FName sessionName, bool bWasSuccessful);
+
 	UPROPERTY( EditDefaultsOnly , meta = (BindWidget) )
 	class UTextBlock* txt_plyaers;
 

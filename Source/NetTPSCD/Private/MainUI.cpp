@@ -3,6 +3,7 @@
 
 #include "MainUI.h"
 
+#include "NetGameInstance.h"
 #include "NetPlayerController.h"
 #include "Components/Button.h"
 #include "Components/CanvasPanel.h"
@@ -94,7 +95,17 @@ void UMainUI::OnMyClickRetry()
 
 void UMainUI::OnMyClickQuit()
 {
-	UE_LOG( LogTemp , Warning , TEXT( "OnMyClickQuit" ) );
+	// 게임 인스턴스->sessionInterfacea
+	auto gi = GetGameInstance<UNetGameInstance>();
+	bool bResult = gi->sessionInterface->DestroySession(FName(*gi->myRoomName ));
+	if(bResult)
+	{
+		
+	}
+}
+
+void UMainUI::OnMyDestroyRoom(FName sessionName, bool bWasSuccessful)
+{
 }
 
 void UMainUI::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
